@@ -29,6 +29,11 @@ const Navbar = () => {
               Book
             </span>
           </Link>
+          <Link href="/rooms">
+            <span className='hover:text-main duration-300'>
+              Rooms
+            </span>
+          </Link>
           <Link href="/">
             <span className='hover:text-main duration-300'>
               About

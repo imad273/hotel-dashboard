@@ -1,6 +1,6 @@
 "use client"
 import { CalendarIcon, HandHeart } from 'lucide-react'
-import React, { useEffect } from 'react'
+import React from 'react'
 
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
@@ -61,7 +61,11 @@ const page = () => {
         </div>
       </div>
 
-      <div className='mt-8'>
+      <div className='text-2xl font-semibold text-gray-300 mt-5'>
+        <h1>Search for rooms</h1>
+      </div>
+
+      <div className='mt-5'>
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-3">
             <div className='grid grid-cols-2 gap-3'>
@@ -165,8 +169,8 @@ const page = () => {
               />
             </div>
 
-            <div className='mt-3 flex justify-end'>
-              <Button type="submit">Search Hotel</Button>
+            <div className='flex justify-end'>
+              <Button className='mt-1' type="submit">Search Hotel</Button>
             </div>
           </form>
         </Form>
