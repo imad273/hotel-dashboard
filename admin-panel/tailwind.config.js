@@ -5,6 +5,9 @@ module.exports = {
   darkMode: ["class"],
   content: ["./src/**/**/*.{html,js,ts,tsx}"],
   theme: {
+    fontFamily: {
+      "mine": ["Montserrat", "sans-serif"],
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -14,6 +17,11 @@ module.exports = {
     },
     extend: {
       colors: {
+        main: "#E56A1B",
+        second: "#FF9E8E",
+        dark_bg: "#121212",
+        dark_content_bg: "#1E1E1E",
+
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
