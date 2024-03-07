@@ -1,6 +1,8 @@
 import React from 'react'
 import HomeBars from 'components/charts/HomeBars'
 import { Banknote } from 'lucide-react'
+import HomeTable from 'components/tables/HomeTable'
+import HomeLine from 'components/charts/LineChart'
 
 const home = () => {
   return (
@@ -16,7 +18,7 @@ const home = () => {
             <h3 className='text-xl font-semibold text-gray-100'>Profit</h3>
           </div>
           <div className='mt-6'>
-            <span className='text-xl font-semibold text-gray-200 float-end'>
+            <span className='text-2xl font-semibold text-gray-200 float-end'>
               $12.856
             </span>
           </div>
@@ -31,8 +33,8 @@ const home = () => {
 
         <div className='px-3 py-4 rounded-xl bg-dark_bg'>
           <div className='flex justify-center items-center flex-col h-full gap-1.5'>
-            <h3 className='text-5xl font-semibold'>12</h3>
-            <p className='text-xs text-gray-200'>Rooms booked (last 30 days)</p>
+            <h3 className='text-5xl font-semibold'>65</h3>
+            <p className='text-xs text-gray-200'>Visitor (last 30 days)</p>
           </div>
         </div>
       </div>
@@ -45,8 +47,18 @@ const home = () => {
           <HomeBars />
         </div>
         <div className='p-5 rounded-lg bg-dark_bg'>
-          jed
+          <div>
+            <h3 className='pb-6 text-2xl font-semibold text-gray-100'>Visitors</h3>
+          </div>
+          <HomeLine />
         </div>
+      </div>
+
+      <div className='w-full p-5 rounded-lg bg-dark_bg'>
+        <div>
+          <h3 className='pb-6 text-2xl font-semibold text-gray-100'>Last reservations</h3>
+        </div>
+        <HomeTable />
       </div>
     </div>
   )
