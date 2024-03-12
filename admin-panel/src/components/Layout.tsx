@@ -1,8 +1,8 @@
 import React from 'react'
-import Home from 'pages/home'
 import { Route, Routes } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Bell, UserRound } from 'lucide-react'
+import { Home, Rooms } from '../pages'
 
 const Layout = () => {
 
@@ -10,11 +10,15 @@ const Layout = () => {
     {
       path: "/",
       element: <Home />
+    },
+    {
+      path: "/rooms",
+      element: <Rooms />
     }
   ]
 
   return (
-    <main className='flex text-white font-mine'>
+    <main className='flex text-white !font-mine'>
       <div className='fixed min-h-screen bg-dark_bg w-72'>
         <Sidebar />
       </div>
@@ -31,7 +35,7 @@ const Layout = () => {
           </div>
         </div>
 
-        <div className='py-3 px-7'>
+        <div className='py-5 px-7'>
           <Routes>
             {routes.map((route, index) => (
               <Route
