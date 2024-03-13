@@ -19,39 +19,54 @@ import {
 
 import { EllipsisVertical, Eye, PencilRuler, Trash2 } from 'lucide-react'
 
-const RoomsTable = () => {
+const ReservationTable = () => {
   const head = [
+    "ID",
+    "Guest Name",
     "Room Number",
-    "Room Type", // (e.g., single, double, suite)
-    "Capacity", // 2 person
-    "Availability",
+    "Check-in/Check-out",
+    "Number of Guests",
+    "Total Cost",
+    "Payment Status",
     "Options",
   ]
 
   const data = [
     {
-      number: "001",
-      type: "Double",
-      capacity: 2,
-      availability: true,
+      ID: "D158sX",
+      guestName: "Ahmed",
+      roomNumber: 0o1,
+      checkIn_checkOut: "05/01/2024 | 08/01/2024",
+      numberOfGuests: 1,
+      totalCost: 120,
+      paymentStatus: "payed",
     },
     {
-      number: "002",
-      type: "Single",
-      capacity: 1,
-      availability: false,
+      ID: "M398sX",
+      guestName: "Hicham",
+      roomNumber: 0o2,
+      checkIn_checkOut: "10/02/2024 | 18/02/2024",
+      numberOfGuests: 2,
+      totalCost: 220,
+      paymentStatus: "pending",
     },
     {
-      number: "003",
-      type: "Double",
-      capacity: 2,
-      availability: true,
+      ID: "X169aX",
+      guestName: "Muhammed",
+      roomNumber: 0o6,
+      checkIn_checkOut: "11/01/2024 | 18/02/2024",
+      numberOfGuests: 2,
+      totalCost: 320,
+      paymentStatus: "payed",
     },
     {
-      number: "004",
-      type: "Double",
-      capacity: 3,
-      availability: false,
+      ID: "S185aP",
+      guestName: "Hala",
+      roomNumber: 0o5,
+      checkIn_checkOut: "13/01/2024 | 16/02/2024",
+      numberOfGuests: 3,
+      totalCost: 290,
+      paymentStatus: "pending",
     },
   ]
 
@@ -70,15 +85,18 @@ const RoomsTable = () => {
         <TableBody>
           {
             data.map(data => (
-              <TableRow key={data.number}>
-                <TableCell>{data.number}</TableCell>
-                <TableCell>{data.type}</TableCell>
-                <TableCell>{data.capacity}</TableCell>
+              <TableRow key={data.ID}>
+                <TableCell>{data.ID}</TableCell>
+                <TableCell>{data.guestName}</TableCell>
+                <TableCell>{data.roomNumber}</TableCell>
+                <TableCell>{data.checkIn_checkOut}</TableCell>
+                <TableCell>{data.numberOfGuests}</TableCell>
+                <TableCell>{data.totalCost}</TableCell>
                 <TableCell>
-                  {data.availability ?
-                    <span className='p-2 font-semibold text-green-500 bg-[#102319] rounded-lg'>available</span>
+                  {data.paymentStatus === "payed" ?
+                    <span className='p-2 font-semibold text-green-500 bg-[#102319] rounded-lg'>{data.paymentStatus}</span>
                     :
-                    <span className='p-2 font-semibold text-red-500 bg-[#231210] rounded-lg'>unavailable</span>
+                    <span className='p-2 font-semibold text-orange-500 bg-[#231a10] rounded-lg'>{data.paymentStatus}</span>
                   }
                 </TableCell>
                 <TableCell>
@@ -97,7 +115,7 @@ const RoomsTable = () => {
                         </DropdownMenuItem>
                         <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
                           <Eye className="h-5 w-5" />
-                          <span className='font-semibold'>View</span>
+                          <span className='font-semibold'>View Details</span>
                         </DropdownMenuItem>
                         <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
                           <Trash2 className="h-5 w-5 text-red-600" />
@@ -116,4 +134,4 @@ const RoomsTable = () => {
   )
 }
 
-export default RoomsTable
+export default ReservationTable

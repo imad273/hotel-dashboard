@@ -1,7 +1,7 @@
 import React from 'react'
-import RoomsTable from 'components/tables/RoomsTable'
 import { Button } from 'components/ui/button'
 import { CopyPlus } from 'lucide-react'
+import { RoomsTable } from 'components/tables'
 
 const Rooms = () => {
   return (
