@@ -112,7 +112,7 @@ const AddRooms = () => {
               <FormItem>
                 <FormLabel>Price</FormLabel>
                 <FormControl>
-                  <Input type='number' {...field}
+                  <Input type='number' {...field} min={0}
                     onChange={(event) => field.onChange(Number(event.target.value))}
                   />
                 </FormControl>
@@ -127,7 +127,7 @@ const AddRooms = () => {
               <FormItem>
                 <FormLabel>Capacity</FormLabel>
                 <FormControl>
-                  <Input type='number' {...field}
+                  <Input type='number' {...field} min={0}
                     onChange={(event) => field.onChange(Number(event.target.value))}
                   />
                 </FormControl>
