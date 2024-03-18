@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Bell, UserRound } from 'lucide-react'
-import { Home, Rooms, Reservations } from '../pages'
+import { Home, Rooms, Reservations, AddRooms } from '../pages'
 
 const Layout = () => {
 
@@ -14,6 +14,10 @@ const Layout = () => {
     {
       path: "/rooms",
       element: <Rooms />
+    },
+    {
+      path: "/add_rooms",
+      element: <AddRooms />
     },
     {
       path: "/reservations",
