@@ -1,8 +1,7 @@
 const mongoose = require('mongoose');
+require('dotenv').config();
 
-const uri = 'mongodb://emad:AsMYmldS8ZONDGm0@ac-dpo5vm7-shard-00-00.hqxfwkj.mongodb.net:27017,ac-dpo5vm7-shard-00-01.hqxfwkj.mongodb.net:27017,ac-dpo5vm7-shard-00-02.hqxfwkj.mongodb.net:27017/hotel_app?replicaSet=atlas-5uuok6-shard-0&ssl=true&authSource=admin';
-
-const connectDB = mongoose.connect(uri)
+const connectDB = mongoose.connect(process.env.MONGODB_URI)
   .then(() => {
     console.log('Database connected Successfully');
   })

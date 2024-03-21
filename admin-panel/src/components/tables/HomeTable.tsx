@@ -58,7 +58,7 @@ const HomeTable = () => {
       <TableBody>
         {
           data.map(data => (
-            <TableRow>
+            <TableRow key={data.id}>
               <TableCell>{data.id}</TableCell>
               <TableCell>{data.status}</TableCell>
               <TableCell>{data.method}</TableCell>

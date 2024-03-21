@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
@@ -18,6 +18,7 @@ import { Input } from "../../components/ui/Input"
 import { Textarea } from "../../components/ui/textarea"
 import CustomFileInput from 'components/ui/customFileInput'
 import { Trash2 } from 'lucide-react'
+import { useAddRoom } from '../../hooks/rooms/useAddRoom'
 
 const formSchema = z.object({
   number: z.string().min(2, {
@@ -32,9 +33,7 @@ const formSchema = z.object({
   description: z.string().min(2, {
     message: "Room Description is required",
   }),
-  images: z.object({
-    file: z.any()
-  }).array().min(1, {
+  images: z.instanceof(File).array().min(1, {
     message: "At least 1 image is required",
   }),
 })
@@ -51,12 +50,6 @@ const AddRooms = () => {
       images: [],
     },
   })
-
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values)
-  }
 
   const [viewImages, setViewImages] = useState<{ url: string, name: string }[]>([]);
 
@@ -82,6 +75,17 @@ const AddRooms = () => {
     const newPrevImages = viewImages.filter((image: any) => image.name !== name)
     setViewImages(newPrevImages);
   }
+
+  const { createRoom, data, error, isLoading } = useAddRoom()
+
+  function onSubmit(values: z.infer<typeof formSchema>) {
+    //console.log(values);
+    createRoom(values)
+  }
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div className='p-5 rounded bg-dark_bg'>
