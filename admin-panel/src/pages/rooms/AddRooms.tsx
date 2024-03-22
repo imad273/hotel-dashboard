@@ -19,6 +19,9 @@ import { Textarea } from "../../components/ui/textarea"
 import CustomFileInput from 'components/ui/customFileInput'
 import { Trash2 } from 'lucide-react'
 import { useAddRoom } from '../../hooks/rooms/useAddRoom'
+import SuccessAlert from 'components/Alerts/SuccessAlert'
+import FailsAlert from 'components/Alerts/FailsAlert'
+import LoadingBadge from 'components/LoadingBadge'
 
 const formSchema = z.object({
   number: z.string().min(2, {
@@ -79,16 +82,36 @@ const AddRooms = () => {
   const { createRoom, data, error, isLoading } = useAddRoom()
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    //console.log(values);
     createRoom(values)
   }
 
+  const [successAlert, setSuccessAlert] = useState(false)
+  const [failsAlert, setFailsAlert] = useState(false)
+  const [alertMsg, setAlertMsg] = useState("")
+
   useEffect(() => {
     console.log(data);
-  }, [data]);
+    if (error) {
+      setFailsAlert(true);
+      setAlertMsg("There was an error while creating the room");
+    }
+
+    if (data !== undefined) {
+      setSuccessAlert(true);
+      setAlertMsg("Room Created Successfully");
+    }
+  }, [data, error]);
 
   return (
-    <div className='p-5 rounded bg-dark_bg'>
+    <div className='p-5 rounded bg-dark_bg relative'>
+      {successAlert && <SuccessAlert setSuccessAlert={setSuccessAlert}>{alertMsg}</SuccessAlert>}
+      {failsAlert && <FailsAlert setFailsAlert={setFailsAlert}>{alertMsg}</FailsAlert>}
+
+      {
+        isLoading &&
+        <LoadingBadge />
+      }
+
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
           <FormField

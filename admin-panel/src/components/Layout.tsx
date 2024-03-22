@@ -5,7 +5,6 @@ import { Bell, UserRound } from 'lucide-react'
 import { Home, Rooms, Reservations, AddRooms } from '../pages'
 
 const Layout = () => {
-
   const routes = [
     {
       path: "/",

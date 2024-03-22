@@ -12,11 +12,12 @@ export function useAddRoom() {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   let formData = new FormData();
 
   const createRoom = async (data: dataType) => {
+    setIsLoading(true);
 
     formData.append("number", data.number);
     data.images.map(image => {
