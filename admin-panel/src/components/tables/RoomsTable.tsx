@@ -18,17 +18,21 @@ import {
 } from "components/ui/dropdown-menu"
 
 import { EllipsisVertical, Eye, PencilRuler, Trash2 } from 'lucide-react'
+import { FetchRooms } from 'types'
 
-const RoomsTable = () => {
+interface TableProps {
+  rooms: FetchRooms | undefined
+}
+
+const RoomsTable = ({ rooms }: TableProps) => {
   const head = [
     "Room Number",
-    "Room Type", // (e.g., single, double, suite)
     "Capacity", // 2 person
     "Availability",
     "Options",
   ]
 
-  const data = [
+  /* const data = [
     {
       number: "001",
       type: "Double",
@@ -53,7 +57,7 @@ const RoomsTable = () => {
       capacity: 3,
       availability: false,
     },
-  ]
+  ] */
 
   return (
     <div className='border border-gray-400 rounded-md'>
@@ -69,13 +73,13 @@ const RoomsTable = () => {
         </TableHeader>
         <TableBody>
           {
-            data.map(data => (
-              <TableRow key={data.number}>
+            rooms?.data.map((data) => (
+              <TableRow key={data._id}>
                 <TableCell>{data.number}</TableCell>
-                <TableCell>{data.type}</TableCell>
+                {/* <TableCell>{data.type}</TableCell> */}
                 <TableCell>{data.capacity}</TableCell>
                 <TableCell>
-                  {data.availability ?
+                  {data.availability === true ?
                     <span className='p-2 font-semibold text-green-500 bg-[#102319] rounded-lg'>available</span>
                     :
                     <span className='p-2 font-semibold text-red-500 bg-[#231210] rounded-lg'>unavailable</span>

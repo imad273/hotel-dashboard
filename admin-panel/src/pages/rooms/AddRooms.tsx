@@ -21,7 +21,7 @@ import { Trash2 } from 'lucide-react'
 import { useAddRoom } from '../../hooks/rooms/useAddRoom'
 import SuccessAlert from 'components/Alerts/SuccessAlert'
 import FailsAlert from 'components/Alerts/FailsAlert'
-import LoadingBadge from 'components/LoadingBadge'
+import LoadingBadge from 'components/loading/LoadingBadge'
 
 const formSchema = z.object({
   number: z.string().min(2, {

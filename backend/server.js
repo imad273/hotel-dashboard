@@ -40,12 +40,23 @@ app.get('/', (req, res) => {
 
 const Room = require('./models/room');
 
-app.post('/create_room', upload.array("images"), async (req, res) => {
-  /*   console.log(req.body);
-    console.log(req.files); */
-
+app.get('/all_rooms', async (req, res) => {
   try {
-    const createdDocument = await Room.create({ ...req.body, images: req.files.map(image => image.filename) })
+    const findDocument = await Room.find()
+    res.send({ data: findDocument });
+  } catch (error) {
+    // Creation failed
+    res.status(500).send({ error: error })
+  }
+})
+
+app.post('/create_room', upload.array("images"), async (req, res) => {
+  try {
+    const createdDocument = await Room.create({
+      ...req.body,
+      availability: true,
+      images: req.files.map(image => image.filename)
+    })
     res.send({ message: 'Document created', data: createdDocument });
   } catch (error) {
     // Creation failed

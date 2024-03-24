@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const roomSchema = new mongoose.Schema({
-  number: String, // String is shorthand for {type: String}
+  number: String,
   price: Number,
   capacity: Number,
   description: String,
+  availability: Boolean,
   images: [Object]
 }, { collection: 'rooms' });
 

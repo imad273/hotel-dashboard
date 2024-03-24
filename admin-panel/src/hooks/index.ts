@@ -1,1 +1,1 @@
-export * from "./rooms/useAddRoom"
+export * from "./rooms"
