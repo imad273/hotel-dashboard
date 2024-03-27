@@ -17,10 +17,6 @@ const Rooms = () => {
     fetchRooms()
   }, []);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data])
-
   return (
     <div className='p-5 rounded bg-dark_bg'>
       <div className='flex justify-end'>

@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 interface dataType {
+  availability: boolean
   number: string
   price: number,
   capacity: number,
@@ -8,7 +9,7 @@ interface dataType {
   images: File[]
 }
 
-export function useAddRoom() {
+export function useEditRoom() {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
@@ -16,9 +17,11 @@ export function useAddRoom() {
 
   let formData = new FormData();
 
-  const createRoom = async (data: dataType) => {
+  const editRoom = async (data: dataType, id: string) => {
     setIsLoading(true);
 
+    formData.append("id", id.toString());
+    formData.append("availability", data.availability.toString());
     formData.append("number", data.number);
     data.images.map(image => {
       formData.append("images", image);
@@ -27,7 +30,7 @@ export function useAddRoom() {
     formData.append("capacity", data.capacity.toString());
     formData.append("description", data.description);
 
-    const request = await fetch("http://localhost:9999/rooms/create_room", {
+    const request = await fetch("http://localhost:9999/rooms/edit_room", {
       method: "POST",
       /* headers: { 'Content-Type': 'multipart/form-data ' }, */
       body: formData
@@ -44,5 +47,5 @@ export function useAddRoom() {
     setIsLoading(false);
   }
 
-  return { createRoom, data, error, errorMsg, isLoading };
+  return { editRoom, data, error, errorMsg, isLoading };
 }

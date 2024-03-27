@@ -1,6 +1,9 @@
 export interface FetchRooms {
   data: RoomsProps[]
 }
+export interface FetchSingleRoom {
+  data: RoomsProps
+}
 
 export interface RoomsProps {
   _id: string,

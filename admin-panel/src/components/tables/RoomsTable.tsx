@@ -18,6 +18,7 @@ import {
 } from "components/ui/dropdown-menu"
 
 import { EllipsisVertical, Eye, PencilRuler, Trash2 } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { FetchRooms } from 'types'
 
 interface TableProps {
@@ -95,10 +96,12 @@ const RoomsTable = ({ rooms }: TableProps) => {
                       <DropdownMenuLabel>Options</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuGroup>
-                        <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
-                          <PencilRuler className="h-5 w-5" />
-                          <span className='font-semibold'>Edit</span>
-                        </DropdownMenuItem>
+                        <Link to={`/edit_rooms/${data._id}`}>
+                          <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
+                            <PencilRuler className="h-5 w-5" />
+                            <span className='font-semibold'>Edit</span>
+                          </DropdownMenuItem>
+                        </Link>
                         <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
                           <Eye className="h-5 w-5" />
                           <span className='font-semibold'>View</span>

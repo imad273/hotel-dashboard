@@ -1,15 +1,15 @@
 import { useState } from "react";
-import { FetchRooms } from "types";
+import { FetchSingleRoom } from "types";
 
-export function useGetRooms() {
-  const [data, setData] = useState<FetchRooms>();
+export function useGetSingleRoom() {
+  const [data, setData] = useState<FetchSingleRoom>();
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const GetRooms = async () => {
+  const GetRoom = async (id?: string) => {
 
-    const request = await fetch("http://localhost:9999/rooms/all_rooms", {
+    const request = await fetch(`http://localhost:9999/rooms/room?id=${id}`, {
       method: "GET"
     });
 
@@ -24,5 +24,5 @@ export function useGetRooms() {
     setIsLoading(false);
   }
 
-  return { GetRooms, data, error, errorMsg, isLoading };
+  return { GetRoom, data, error, errorMsg, isLoading };
 }

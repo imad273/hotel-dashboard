@@ -2,7 +2,7 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Bell, UserRound } from 'lucide-react'
-import { Home, Rooms, Reservations, AddRooms } from '../pages'
+import { Home, Rooms, Reservations, AddRooms, EditRooms } from '../pages'
 
 const Layout = () => {
   const routes = [
@@ -17,6 +17,10 @@ const Layout = () => {
     {
       path: "/add_rooms",
       element: <AddRooms />
+    },
+    {
+      path: "/edit_rooms/:id",
+      element: <EditRooms />
     },
     {
       path: "/reservations",
