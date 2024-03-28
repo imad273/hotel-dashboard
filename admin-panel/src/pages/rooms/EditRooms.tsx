@@ -20,7 +20,7 @@ import SuccessAlert from 'components/Alerts/SuccessAlert'
 import FailsAlert from 'components/Alerts/FailsAlert'
 import LoadingBadge from 'components/loading/LoadingBadge'
 import { useEditRoom, useGetSingleRoom } from 'hooks'
-import { useParams } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import { Switch } from 'components/ui/Switch'
 import { Label } from 'components/ui/label'
 
@@ -107,6 +107,8 @@ const EditRooms = () => {
   const [failsAlert, setFailsAlert] = useState(false)
   const [alertMsg, setAlertMsg] = useState("")
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     if (error) {
       setFailsAlert(true);
@@ -116,7 +118,10 @@ const EditRooms = () => {
     if (uploadData !== undefined) {
       setSuccessAlert(true);
       setAlertMsg("Room Updated Successfully");
-      GetRoom(params.id)
+
+      setTimeout(() => {
+        navigate('/rooms')
+      }, 2000)
     }
   }, [uploadData, error]);
 

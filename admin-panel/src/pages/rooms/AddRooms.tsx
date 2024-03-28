@@ -20,6 +20,7 @@ import { useAddRoom } from '../../hooks/rooms/useAddRoom'
 import SuccessAlert from 'components/Alerts/SuccessAlert'
 import FailsAlert from 'components/Alerts/FailsAlert'
 import LoadingBadge from 'components/loading/LoadingBadge'
+import { useNavigate } from 'react-router-dom'
 
 const formSchema = z.object({
   number: z.string().min(2, {
@@ -87,8 +88,9 @@ const AddRooms = () => {
   const [failsAlert, setFailsAlert] = useState(false)
   const [alertMsg, setAlertMsg] = useState("")
 
+  const navigate = useNavigate();
+
   useEffect(() => {
-    //console.log(data);
     if (error) {
       setFailsAlert(true);
       setAlertMsg("There was an error while creating the room");
@@ -97,6 +99,10 @@ const AddRooms = () => {
     if (data !== undefined) {
       setSuccessAlert(true);
       setAlertMsg("Room Created Successfully");
+
+      setTimeout(() => {
+        navigate('/rooms')
+      }, 2000)
     }
   }, [data, error]);
 

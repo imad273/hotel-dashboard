@@ -8,6 +8,18 @@ import {
 } from 'components/ui/Table'
 
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "components/ui/AlertDialog"
+
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
@@ -23,42 +35,16 @@ import { FetchRooms } from 'types'
 
 interface TableProps {
   rooms: FetchRooms | undefined
+  deleteRoom: (id: string) => void
 }
 
-const RoomsTable = ({ rooms }: TableProps) => {
+const RoomsTable = ({ rooms, deleteRoom }: TableProps) => {
   const head = [
     "Room Number",
     "Capacity", // 2 person
     "Availability",
     "Options",
   ]
-
-  /* const data = [
-    {
-      number: "001",
-      type: "Double",
-      capacity: 2,
-      availability: true,
-    },
-    {
-      number: "002",
-      type: "Single",
-      capacity: 1,
-      availability: false,
-    },
-    {
-      number: "003",
-      type: "Double",
-      capacity: 2,
-      availability: true,
-    },
-    {
-      number: "004",
-      type: "Double",
-      capacity: 3,
-      availability: false,
-    },
-  ] */
 
   return (
     <div className='border border-gray-400 rounded-md'>
@@ -87,7 +73,6 @@ const RoomsTable = ({ rooms }: TableProps) => {
                   }
                 </TableCell>
                 <TableCell>
-
                   <DropdownMenu>
                     <DropdownMenuTrigger className='cursor-pointer outline-none'>
                       <EllipsisVertical />
@@ -102,13 +87,32 @@ const RoomsTable = ({ rooms }: TableProps) => {
                             <span className='font-semibold'>Edit</span>
                           </DropdownMenuItem>
                         </Link>
+
                         <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
                           <Eye className="h-5 w-5" />
                           <span className='font-semibold'>View</span>
                         </DropdownMenuItem>
-                        <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
-                          <Trash2 className="h-5 w-5 text-red-600" />
-                          <span className='font-semibold'>Delete</span>
+
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className='cursor-pointer hover:bg-dark_content_bg'>
+                          <AlertDialog>
+                            <AlertDialogTrigger className='flex items-center gap-2 w-full'>
+                              <Trash2 className="h-5 w-5 text-red-600" />
+                              <span className='font-semibold'>Delete</span>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. This will permanently delete your account
+                                  and remove your data from our servers.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deleteRoom(data._id)}>Continue</AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                     </DropdownMenuContent>
@@ -119,7 +123,7 @@ const RoomsTable = ({ rooms }: TableProps) => {
           }
         </TableBody>
       </Table>
-    </div>
+    </div >
   )
 }
 

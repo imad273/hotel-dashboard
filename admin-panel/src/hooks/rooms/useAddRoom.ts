@@ -29,7 +29,6 @@ export function useAddRoom() {
 
     const request = await fetch("http://localhost:9999/rooms/create_room", {
       method: "POST",
-      /* headers: { 'Content-Type': 'multipart/form-data ' }, */
       body: formData
     });
 

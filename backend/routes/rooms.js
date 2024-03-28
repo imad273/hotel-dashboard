@@ -62,4 +62,19 @@ router.post('/edit_room', upload.array("images"), async (req, res) => {
   }
 })
 
+router.post('/delete_room', async (req, res) => {
+  try {
+    const deleteDocument = await Room.deleteOne(
+      {
+        _id: req.body.id
+      }
+    )
+    res.send({ message: 'Document Deleted', data: deleteDocument });
+  } catch (error) {
+    console.log(error);
+    // Creation failed
+    res.status(500).send({ error: error })
+  }
+})
+
 module.exports = router;
