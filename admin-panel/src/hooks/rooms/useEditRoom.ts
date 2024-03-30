@@ -18,6 +18,7 @@ export function useEditRoom() {
   let formData = new FormData();
 
   const editRoom = async (data: dataType, id: string) => {
+    setError(false);
     setIsLoading(true);
 
     formData.append("id", id.toString());

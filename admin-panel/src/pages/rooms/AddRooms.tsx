@@ -94,6 +94,7 @@ const AddRooms = () => {
     if (error) {
       setFailsAlert(true);
       setAlertMsg("There was an error while creating the room");
+      return
     }
 
     if (data !== undefined) {
@@ -107,7 +108,7 @@ const AddRooms = () => {
   }, [data, error]);
 
   return (
-    <div className='p-5 rounded bg-dark_bg relative'>
+    <div className='relative p-5 rounded bg-dark_bg'>
       {successAlert && <SuccessAlert setSuccessAlert={setSuccessAlert}>{alertMsg}</SuccessAlert>}
       {failsAlert && <FailsAlert setFailsAlert={setFailsAlert}>{alertMsg}</FailsAlert>}
 
@@ -211,7 +212,7 @@ const AddRooms = () => {
             )}
           </div>
 
-          <div className="flex flex-end">
+          <div className="flex justify-end w-full">
             <Button type="submit">Submit</Button>
           </div>
         </form>

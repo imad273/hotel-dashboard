@@ -17,6 +17,7 @@ export function useAddRoom() {
   let formData = new FormData();
 
   const createRoom = async (data: dataType) => {
+    setError(false);
     setIsLoading(true);
 
     formData.append("number", data.number);

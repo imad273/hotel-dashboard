@@ -2,10 +2,10 @@ const mongoose = require('mongoose');
 
 const staffSchema = new mongoose.Schema({
   name: String,
-  position: Number,
-  phoneNumber: Number,
+  position: String,
+  phoneNumber: String,
   email: String,
-  address: Boolean
+  address: String
 }, { collection: 'staff' });
 
 const Staff = mongoose.model('Staff', staffSchema)

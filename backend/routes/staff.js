@@ -25,11 +25,7 @@ router.get('/worker', async (req, res) => {
 
 router.post('/create_worker', async (req, res) => {
   try {
-    const createdDocument = await Staff.create({
-      ...req.body,
-      availability: true,
-      images: req.files.map(image => image.filename)
-    })
+    const createdDocument = await Staff.create(req.body)
     res.send({ message: 'Document created', data: createdDocument });
   } catch (error) {
     // Creation failed

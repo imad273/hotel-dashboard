@@ -113,6 +113,7 @@ const EditRooms = () => {
     if (error) {
       setFailsAlert(true);
       setAlertMsg("There was an error while updating the room");
+      return
     }
 
     if (uploadData !== undefined) {

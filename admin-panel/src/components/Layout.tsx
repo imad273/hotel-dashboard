@@ -2,7 +2,15 @@ import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Sidebar from './Sidebar'
 import { Bell, UserRound } from 'lucide-react'
-import { Home, Rooms, Reservations, AddRooms, EditRooms } from '../pages'
+import {
+  Home,
+  Rooms,
+  Reservations,
+  AddRooms,
+  EditRooms,
+  Staff,
+  AddWorker
+} from '../pages'
 
 const Layout = () => {
   const routes = [
@@ -25,7 +33,15 @@ const Layout = () => {
     {
       path: "/reservations",
       element: <Reservations />
-    }
+    },
+    {
+      path: "/staff",
+      element: <Staff />
+    },
+    {
+      path: "/add_worker",
+      element: <AddWorker />
+    },
   ]
 
   return (

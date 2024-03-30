@@ -29,7 +29,7 @@ const Sidebar = () => {
           <Album size={20} />
           Reservations
         </Link>
-        <Link to="/" className='w-full px-3 py-3.5 rounded-lg flex items-center gap-2 text-gray-300 hover:bg-dark_content_bg hover:text-white duration-200'>
+        <Link to="/staff" className='w-full px-3 py-3.5 rounded-lg flex items-center gap-2 text-gray-300 hover:bg-dark_content_bg hover:text-white duration-200'>
           <UsersRound size={20} />
           Staff
         </Link>
