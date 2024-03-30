@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { FetchRooms } from "types";
+import { FetchStaff } from "types";
 
 export function useGetStaff() {
-  const [data, setData] = useState<FetchRooms>();
+  const [data, setData] = useState<FetchStaff>();
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(true);

@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import { Button } from 'components/ui/button'
 import { CopyPlus } from 'lucide-react'
-import { RoomsTable } from 'components/tables'
 import { Link } from 'react-router-dom'
 import { useDeleteRoom, useGetStaff } from 'hooks'
 import FetchLoadingBadge from 'components/loading/FetchLoadingBadge'
 import NoDataAlert from 'components/Alerts/NoDataAlert'
+import StaffTable from 'components/tables/StaffTable'
 
 const Staff = () => {
 
@@ -19,7 +19,7 @@ const Staff = () => {
 
   const { deleteRoom, data: deleteData, isLoading: deleteLoading } = useDeleteRoom();
 
-  const deleteRooms = (id: string) => {
+  const deleteStaffs = (id: string) => {
     deleteRoom(id);
   }
 
@@ -46,7 +46,7 @@ const Staff = () => {
           data?.data.length === 0 ?
             <NoDataAlert dataType="Staff" />
             :
-            <RoomsTable rooms={data} deleteRoom={deleteRooms} />
+            <StaffTable staff={data} deleteStaff={deleteStaffs} />
         }
       </div>
     </div>
