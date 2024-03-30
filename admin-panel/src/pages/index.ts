@@ -8,3 +8,4 @@ export { default as Reservations } from "./reservations/Reservations"
 
 export { default as Staff } from "./staff/Staff"
 export { default as AddWorker } from "./staff/AddWorker"
+export { default as EditWorker } from "./staff/EditWorker"

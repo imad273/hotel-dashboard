@@ -68,7 +68,6 @@ const StaffTable = ({ staff, deleteStaff }: TableProps) => {
                 <TableCell>{data.name}</TableCell>
                 <TableCell>{data.position}</TableCell>
                 <TableCell>{data.phoneNumber}</TableCell>
-                <TableCell>{data.phoneNumber}</TableCell>
                 <TableCell>{data.email}</TableCell>
                 <TableCell>{data.address}</TableCell>
                 <TableCell>
@@ -80,7 +79,7 @@ const StaffTable = ({ staff, deleteStaff }: TableProps) => {
                       <DropdownMenuLabel>Options</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuGroup>
-                        <Link to={`/edit_rooms/${data._id}`}>
+                        <Link to={`/edit_worker/${data._id}`}>
                           <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
                             <PencilRuler className="w-5 h-5" />
                             <span className='font-semibold'>Edit</span>

@@ -40,9 +40,7 @@ router.post('/edit_worker', async (req, res) => {
         _id: req.body.id
       },
       {
-        ...req.body,
-        availability: req.body.availability === "true" ? true : false,
-        ...(req.files.length > 0 && { images: req.files.map(image => image.filename) })
+        ...req.body
       }
     )
     res.send({ message: 'Document updated', data: editDocument });

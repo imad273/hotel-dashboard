@@ -9,7 +9,8 @@ import {
   AddRooms,
   EditRooms,
   Staff,
-  AddWorker
+  AddWorker,
+  EditWorker
 } from '../pages'
 
 const Layout = () => {
@@ -41,6 +42,10 @@ const Layout = () => {
     {
       path: "/add_worker",
       element: <AddWorker />
+    },
+    {
+      path: "/edit_worker/:id",
+      element: <EditWorker />
     },
   ]
 

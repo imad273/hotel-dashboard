@@ -12,11 +12,11 @@ import {
   FormMessage,
 } from "../../components/ui/form"
 import { Input } from "../../components/ui/Input"
-import { useAddWorker } from 'hooks'
 import SuccessAlert from 'components/Alerts/SuccessAlert'
 import FailsAlert from 'components/Alerts/FailsAlert'
 import LoadingBadge from 'components/loading/LoadingBadge'
-import { useNavigate } from 'react-router-dom'
+import { useEditWorker, useGetSingleWorker } from 'hooks'
+import { useNavigate, useParams } from 'react-router-dom'
 
 const phoneRegex = new RegExp(
   /^([+]?[\s0-9]+)?(\d{3}|[(]?[0-9]+[)])?([-]?[\s]?[0-9])+$/
@@ -40,7 +40,7 @@ const formSchema = z.object({
   })
 })
 
-const AddStaff = () => {
+const EditWorker = () => {
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -53,10 +53,27 @@ const AddStaff = () => {
     },
   })
 
-  const { createWorker, data, error, isLoading } = useAddWorker()
+  const { GetWorker, data, isLoading } = useGetSingleWorker();
+  const { editWorker, data: uploadData, error, isLoading: editLoading } = useEditWorker();
+
+  const params = useParams();
+
+  useEffect(() => {
+    GetWorker(params.id)
+  }, [params]);
+
+  useEffect(() => {
+    if (data !== undefined) {
+      form.setValue('name', data.data.name)
+      form.setValue('position', data.data.position)
+      form.setValue('phoneNumber', data.data.phoneNumber)
+      form.setValue('email', data.data.email)
+      form.setValue('address', data.data.address)
+    }
+  }, [data]);
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    createWorker(values)
+    params.id !== undefined && editWorker(values, params.id)
   }
 
   const [successAlert, setSuccessAlert] = useState(false)
@@ -68,19 +85,19 @@ const AddStaff = () => {
   useEffect(() => {
     if (error) {
       setFailsAlert(true);
-      setAlertMsg("There was an error while creating the member");
+      setAlertMsg("There was an error while updating the worker");
       return
     }
-    
-    if (data !== undefined) {
+
+    if (uploadData !== undefined) {
       setSuccessAlert(true);
-      setAlertMsg("Worker Created Successfully");
+      setAlertMsg("Item Updated Successfully");
 
       setTimeout(() => {
         navigate('/staff')
       }, 2000)
     }
-  }, [data, error]);
+  }, [uploadData, error]);
 
   return (
     <div className='relative p-5 rounded bg-dark_bg'>
@@ -170,4 +187,4 @@ const AddStaff = () => {
   )
 }
 
-export default AddStaff
+export default EditWorker
