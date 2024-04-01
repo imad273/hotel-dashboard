@@ -6,6 +6,7 @@ import {
   Home,
   Rooms,
   Reservations,
+  AddReservation,
   AddRooms,
   EditRooms,
   Staff,
@@ -36,6 +37,10 @@ const Layout = () => {
       element: <Reservations />
     },
     {
+      path: "/add_reservation",
+      element: <AddReservation />
+    },
+    {
       path: "/staff",
       element: <Staff />
     },
@@ -46,7 +51,7 @@ const Layout = () => {
     {
       path: "/edit_worker/:id",
       element: <EditWorker />
-    },
+    }
   ]
 
   return (
