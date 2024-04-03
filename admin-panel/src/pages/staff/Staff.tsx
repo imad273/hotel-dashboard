@@ -38,7 +38,7 @@ const Staff = () => {
 
     if (deleteData !== undefined) {
       setSuccessAlert(true);
-      setAlertMsg("Item Created Successfully");
+      setAlertMsg("Item Deleted Successfully");
 
       fetchRooms()
     }

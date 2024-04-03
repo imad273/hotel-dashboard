@@ -26,7 +26,7 @@ router.get('/reservation', async (req, res) => {
 router.post('/create_reservation', async (req, res) => {
   try {
     const findRoom = await Room.find({ _id: req.body.room })
-    
+
     const createdDocument = await Reservation.create({
       ...req.body,
       room: findRoom[0]
@@ -47,9 +47,7 @@ router.post('/create_reservation', async (req, res) => {
     res.send({ message: 'Document created', data: createdDocument });
   } catch (error) {
     // Creation failed
-    console.log(error);
     res.status(500).send({ error: error })
-    console.log(error);
   }
 })
 
@@ -67,7 +65,6 @@ router.post('/edit_reservation', async (req, res) => {
     )
     res.send({ message: 'Document updated', data: editDocument });
   } catch (error) {
-    console.log(error);
     // Creation failed
     res.status(500).send({ error: error })
   }
@@ -75,14 +72,21 @@ router.post('/edit_reservation', async (req, res) => {
 
 router.post('/delete_reservation', async (req, res) => {
   try {
+    const findReservation = await Reservation.find({ _id: req.body.id })
+    const findRoom = await Room.updateOne(
+      { _id: findReservation[0].id },
+      {
+        availability: true,
+      }
+    )
+
     const deleteDocument = await Reservation.deleteOne(
       {
-        _id: req.body.id
+        _id: req.body.id,
       }
     )
     res.send({ message: 'Document Deleted', data: deleteDocument });
   } catch (error) {
-    console.log(error);
     // Creation failed
     res.status(500).send({ error: error })
   }

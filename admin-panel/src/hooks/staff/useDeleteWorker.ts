@@ -7,7 +7,9 @@ export function useDeleteWorker() {
   const [isLoading, setIsLoading] = useState(true);
 
   const deleteWorker = async (id: string) => {
-
+    setError(false);
+    setIsLoading(true);
+    
     const request = await fetch("http://localhost:9999/staff/delete_worker", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },

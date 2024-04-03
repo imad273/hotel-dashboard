@@ -1,16 +1,16 @@
 import { useState } from "react";
 
-export function useDeleteRoom() {
+export function useDeleteReservations() {
   const [data, setData] = useState();
   const [error, setError] = useState(false);
   const [errorMsg, setErrorMsg] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  const deleteRoom = async (id: string) => {
+  const deleteReservations = async (id: string) => {
     setError(false);
     setIsLoading(true);
     
-    const request = await fetch("http://localhost:9999/rooms/delete_room", {
+    const request = await fetch("http://localhost:9999/reservations/delete_reservation", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -29,5 +29,5 @@ export function useDeleteRoom() {
     setIsLoading(false);
   }
 
-  return { deleteRoom, data, error, errorMsg, isLoading };
+  return { deleteReservations, data, error, errorMsg, isLoading };
 }

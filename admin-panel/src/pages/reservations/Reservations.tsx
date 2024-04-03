@@ -3,7 +3,7 @@ import { Button } from 'components/ui/button'
 import { CopyPlus } from 'lucide-react'
 import { ReservationsTable } from 'components/tables'
 import { Link } from 'react-router-dom'
-import { useGetReservations } from 'hooks'
+import { useDeleteReservations, useGetReservations } from 'hooks'
 import FetchLoadingBadge from 'components/loading/FetchLoadingBadge'
 import NoDataAlert from 'components/Alerts/NoDataAlert'
 import FailsAlert from 'components/Alerts/FailsAlert'
@@ -19,34 +19,30 @@ const Reservations = () => {
     fetchReservations()
   }, []);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  const { deleteReservations, data: deleteData, error } = useDeleteReservations();
 
-  //const { deleteWorker, data: deleteData, error } = useDeleteWorker();
-
-  const deleteReservations = (id: string) => {
-    //deleteWorker(id);
+  const deleteReservation = (id: string) => {
+    deleteReservations(id);
   }
 
   const [successAlert, setSuccessAlert] = useState(false)
   const [failsAlert, setFailsAlert] = useState(false)
   const [alertMsg, setAlertMsg] = useState("")
 
-  /*   useEffect(() => {
-      if (error) {
-        setFailsAlert(true);
-        setAlertMsg("There was an error while deleting the item");
-        return
-      }
-  
-      if (deleteData !== undefined) {
-        setSuccessAlert(true);
-        setAlertMsg("Item Created Successfully");
-  
-        fetchRooms()
-      }
-    }, [deleteData]) */
+  useEffect(() => {
+    if (error) {
+      setFailsAlert(true);
+      setAlertMsg("There was an error while deleting the item");
+      return
+    }
+
+    if (deleteData !== undefined) {
+      setSuccessAlert(true);
+      setAlertMsg("Item Deleted Successfully");
+
+      fetchReservations()
+    }
+  }, [deleteData])
 
   return (
     <div className='p-5 rounded bg-dark_bg'>

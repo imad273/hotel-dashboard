@@ -56,7 +56,6 @@ router.post('/edit_room', upload.array("images"), async (req, res) => {
     )
     res.send({ message: 'Document updated', data: editDocument });
   } catch (error) {
-    console.log(error);
     // Creation failed
     res.status(500).send({ error: error })
   }
@@ -71,7 +70,6 @@ router.post('/delete_room', async (req, res) => {
     )
     res.send({ message: 'Document Deleted', data: deleteDocument });
   } catch (error) {
-    console.log(error);
     // Creation failed
     res.status(500).send({ error: error })
   }

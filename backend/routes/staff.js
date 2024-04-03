@@ -45,7 +45,6 @@ router.post('/edit_worker', async (req, res) => {
     )
     res.send({ message: 'Document updated', data: editDocument });
   } catch (error) {
-    console.log(error);
     // Creation failed
     res.status(500).send({ error: error })
   }
@@ -60,7 +59,6 @@ router.post('/delete_worker', async (req, res) => {
     )
     res.send({ message: 'Document Deleted', data: deleteDocument });
   } catch (error) {
-    console.log(error);
     // Creation failed
     res.status(500).send({ error: error })
   }

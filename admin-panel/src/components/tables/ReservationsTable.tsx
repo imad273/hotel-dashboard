@@ -1,4 +1,16 @@
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "components/ui/AlertDialog"
+
+import {
   Table,
   TableBody,
   TableCell,
@@ -18,6 +30,7 @@ import {
 } from "components/ui/dropdown-menu"
 
 import { EllipsisVertical, Eye, PencilRuler, Trash2 } from 'lucide-react'
+import { Link } from "react-router-dom"
 import { FetchReservations } from 'types'
 
 interface TableProps {
@@ -62,7 +75,7 @@ const ReservationTable = ({ reservations, deleteReservation }: TableProps) => {
                 <TableCell>{data.guestName}</TableCell>
                 <TableCell>{data.room.number}</TableCell>
                 <TableCell>{convertUnixTimeToDate(data.checkIn)} | {convertUnixTimeToDate(data.checkOut)}</TableCell>
-                <TableCell>{data.cost}</TableCell>
+                <TableCell>${data.cost}</TableCell>
                 <TableCell>
                   {data.paymentStatus === true ?
                     <span className='p-2 font-semibold text-green-500 bg-[#102319] rounded-lg'>Paid</span>
@@ -80,17 +93,33 @@ const ReservationTable = ({ reservations, deleteReservation }: TableProps) => {
                       <DropdownMenuLabel>Options</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuGroup>
-                        <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
-                          <PencilRuler className="w-5 h-5" />
-                          <span className='font-semibold'>Edit</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
-                          <Eye className="w-5 h-5" />
-                          <span className='font-semibold'>View Details</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
-                          <Trash2 className="w-5 h-5 text-red-600" />
-                          <span className='font-semibold'>Delete</span>
+                        <Link to={`/edit_worker/${data._id}`}>
+                          <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
+                            <PencilRuler className="w-5 h-5" />
+                            <span className='font-semibold'>Edit</span>
+                          </DropdownMenuItem>
+                        </Link>
+
+                        <DropdownMenuItem onSelect={(e) => e.preventDefault()} className='cursor-pointer hover:bg-dark_content_bg'>
+                          <AlertDialog>
+                            <AlertDialogTrigger className='flex items-center w-full gap-2'>
+                              <Trash2 className="w-5 h-5 text-red-600" />
+                              <span className='font-semibold'>Delete</span>
+                            </AlertDialogTrigger>
+                            <AlertDialogContent>
+                              <AlertDialogHeader>
+                                <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+                                <AlertDialogDescription>
+                                  This action cannot be undone. This will permanently delete your account
+                                  and remove your data from our servers.
+                                </AlertDialogDescription>
+                              </AlertDialogHeader>
+                              <AlertDialogFooter>
+                                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                                <AlertDialogAction onClick={() => deleteReservation(data._id)}>Continue</AlertDialogAction>
+                              </AlertDialogFooter>
+                            </AlertDialogContent>
+                          </AlertDialog>
                         </DropdownMenuItem>
                       </DropdownMenuGroup>
                     </DropdownMenuContent>
