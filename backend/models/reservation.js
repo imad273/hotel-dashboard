@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
 const reservationSchema = new mongoose.Schema({
-  RoomNumber: String,
+  room: Object,
   guestName: String,
   phoneNumber: String,
   email: String,
   guestsNumber: String,
-  CheckIn: Date,
-  CheckOut: Date,
-  Cost: Number,
-  PaymentMethod: String,
-  Notes: String,
+  checkIn: Number,
+  checkOut: Number,
+  cost: Number,
+  paymentStatus: Boolean,
+  notes: String,
 }, { collection: 'reservations' });
 
 const Reservation = mongoose.model('Reservation', reservationSchema)

@@ -1,0 +1,3 @@
+- delete images when room deleted.
+- prevent room create when room number is already used.
+- Edit the white color.

@@ -28,9 +28,11 @@ app.get('/', (req, res) => {
 
 const roomsRouter = require('./routes/rooms');
 const staffRouter = require('./routes/staff');
+const reservationsRouter = require('./routes/reservations');
 
 app.use('/rooms', roomsRouter);
 app.use('/staff', staffRouter);
+app.use('/reservations', reservationsRouter);
 
 app.listen(port, () => {
   console.log(`app running on port ${port}`)
