@@ -93,7 +93,7 @@ const ReservationTable = ({ reservations, deleteReservation }: TableProps) => {
                       <DropdownMenuLabel>Options</DropdownMenuLabel>
                       <DropdownMenuSeparator />
                       <DropdownMenuGroup>
-                        <Link to={`/edit_worker/${data._id}`}>
+                        <Link to={`/edit_reservation/${data._id}`}>
                           <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
                             <PencilRuler className="w-5 h-5" />
                             <span className='font-semibold'>Edit</span>

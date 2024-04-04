@@ -11,7 +11,8 @@ import {
   EditRooms,
   Staff,
   AddWorker,
-  EditWorker
+  EditWorker,
+  EditReservation
 } from '../pages'
 
 const Layout = () => {
@@ -39,6 +40,10 @@ const Layout = () => {
     {
       path: "/add_reservation",
       element: <AddReservation />
+    },
+    {
+      path: "/edit_reservation/:id",
+      element: <EditReservation />
     },
     {
       path: "/staff",
