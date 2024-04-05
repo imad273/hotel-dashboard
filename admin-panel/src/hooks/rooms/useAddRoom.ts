@@ -18,7 +18,6 @@ export function useAddRoom() {
 
   const createRoom = async (data: dataType) => {
     setError(false);
-    setIsLoading(true);
 
     formData.append("number", data.number);
     data.images.map(image => {
@@ -32,16 +31,17 @@ export function useAddRoom() {
       method: "POST",
       body: formData
     });
+    
+    if (!request.ok && request.status === 500) {
+      setError(true);
+    }
 
     const response = await request.json();
 
-    if (!request.ok && request.status === 500) {
-      setError(true);
-      setErrorMsg(response)
-    }
-
     setData(response);
     setIsLoading(false);
+
+    
   }
 
   return { createRoom, data, error, errorMsg, isLoading };

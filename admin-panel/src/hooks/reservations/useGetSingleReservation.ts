@@ -9,7 +9,7 @@ export function useGetSingleReservation() {
 
   const GetReservation = async (id?: string) => {
 
-    const request = await fetch(`http://localhost:9999/reservations/reservation`, {
+    const request = await fetch(`http://localhost:9999/reservations/reservation?id=${id}`, {
       method: "GET"
     });
 

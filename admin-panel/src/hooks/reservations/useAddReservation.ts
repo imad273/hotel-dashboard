@@ -20,7 +20,6 @@ export function useAddReservation() {
 
   const createReservation = async (data: dataType) => {
     setError(false);
-    setIsLoading(true);
     
     const request = await fetch("http://localhost:9999/reservations/create_reservation", {
       method: "POST",
@@ -32,12 +31,11 @@ export function useAddReservation() {
       })
     });
 
-    const response = await request.json();
-
     if (!request.ok && request.status === 500) {
       setError(true);
-      setErrorMsg(response)
     }
+
+    const response = await request.json();
 
     setData(response);
     setIsLoading(false);

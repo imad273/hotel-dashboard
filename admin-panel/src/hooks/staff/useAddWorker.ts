@@ -16,20 +16,18 @@ export function useAddWorker() {
 
   const createWorker = async (data: dataType) => {
     setError(false);
-    setIsLoading(true);
 
     const request = await fetch("http://localhost:9999/staff/create_worker", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(data)
     });
-
-    const response = await request.json();
-
+    
     if (!request.ok && request.status === 500) {
       setError(true);
-      setErrorMsg(response)
     }
+    
+    const response = await request.json();
 
     setData(response);
     setIsLoading(false);

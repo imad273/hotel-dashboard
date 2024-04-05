@@ -79,6 +79,9 @@ const AddRooms = () => {
   }
 
   const { createRoom, data, error, isLoading } = useAddRoom()
+  useEffect(() => {
+    console.log(error)
+  }, [error])
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     createRoom(values)

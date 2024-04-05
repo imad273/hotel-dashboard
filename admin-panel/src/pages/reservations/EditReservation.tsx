@@ -96,12 +96,15 @@ const EditReservation = () => {
   }, [params]);
 
   useEffect(() => {
+    console.log(data);
     if (data !== undefined) {
       form.setValue('room', data.data.room._id)
       form.setValue('guestName', data.data.guestName)
       form.setValue('phoneNumber', data.data.phoneNumber)
       form.setValue('email', data.data.email)
       form.setValue('cost', data.data.cost)
+      form.setValue('checkIn', new Date(data.data.checkIn))
+      form.setValue('checkOut', new Date(data.data.checkOut))
       form.setValue('paymentStatus', data.data.paymentStatus)
       form.setValue('note', data.data.note)
     }
@@ -161,16 +164,20 @@ const EditReservation = () => {
                 <FormLabel>Room Number</FormLabel>
                 <Select onValueChange={(event) => form.setValue('room', event)}>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Room number" />
+                    <SelectValue placeholder={data?.data.room.number || "Room number"} />
                   </SelectTrigger>
                   <SelectContent className='min-h-[200px] overflow-y-scroll'>
-                    {roomsData?.data.length === 0 || roomsData?.data.every(room => room.availability === false) ?
+                    {roomsData?.data.length === 0 /* roomsData?.data.filter(room => room._id !== data?.data.room._id).every(room => room.availability === false) */ ?
                       <NoDataAlert dataType="Rooms" />
                       :
-                      roomsData?.data.map(room => (
-                        room.availability &&
-                        <SelectItem key={room._id} value={room._id} className='cursor-pointer'>{room.number}</SelectItem>
-                      ))
+                      <>
+                        <SelectItem value={data?.data.room._id || "pre"} className='cursor-pointer'>{data?.data.room.number}</SelectItem>
+                        {roomsData?.data.map(room => (
+                          room.availability &&
+                          <SelectItem key={room._id} value={room._id} className='cursor-pointer'>{room.number}</SelectItem>
+                        ))
+                        }
+                      </>
                     }
                   </SelectContent>
                 </Select>

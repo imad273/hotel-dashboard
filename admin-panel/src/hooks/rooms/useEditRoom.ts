@@ -19,7 +19,6 @@ export function useEditRoom() {
 
   const editRoom = async (data: dataType, id: string) => {
     setError(false);
-    setIsLoading(true);
 
     formData.append("id", id.toString());
     formData.append("availability", data.availability.toString());
@@ -37,12 +36,11 @@ export function useEditRoom() {
       body: formData
     });
 
-    const response = await request.json();
-
     if (!request.ok && request.status === 500) {
       setError(true);
-      setErrorMsg(response)
     }
+
+    const response = await request.json();
 
     setData(response);
     setIsLoading(false);

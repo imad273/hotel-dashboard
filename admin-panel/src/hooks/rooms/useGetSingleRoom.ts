@@ -12,13 +12,12 @@ export function useGetSingleRoom() {
     const request = await fetch(`http://localhost:9999/rooms/room?id=${id}`, {
       method: "GET"
     });
-
-    const response = await request.json();
-
+    
     if (!request.ok && request.status === 500) {
       setError(true);
-      setErrorMsg(response)
     }
+
+    const response = await request.json();
 
     setData(response);
     setIsLoading(false);

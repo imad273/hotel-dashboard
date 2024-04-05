@@ -18,7 +18,6 @@ export function useEditWorker() {
 
   const editWorker = async (data: dataType, id: string) => {
     setError(false);
-    setIsLoading(true);
 
     const request = await fetch("http://localhost:9999/staff/edit_worker", {
       method: "POST",
@@ -29,12 +28,11 @@ export function useEditWorker() {
       })
     });
 
-    const response = await request.json();
-
     if (!request.ok && request.status === 500) {
       setError(true);
-      setErrorMsg(response)
     }
+
+    const response = await request.json();
 
     setData(response);
     setIsLoading(false);

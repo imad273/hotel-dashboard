@@ -8,8 +8,7 @@ export function useDeleteRoom() {
 
   const deleteRoom = async (id: string) => {
     setError(false);
-    setIsLoading(true);
-    
+
     const request = await fetch("http://localhost:9999/rooms/delete_room", {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
@@ -18,12 +17,11 @@ export function useDeleteRoom() {
       })
     });
 
-    const response = await request.json();
-
     if (!request.ok && request.status === 500) {
       setError(true);
-      setErrorMsg(response)
     }
+
+    const response = await request.json();
 
     setData(response);
     setIsLoading(false);
