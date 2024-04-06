@@ -53,7 +53,7 @@ const formSchema = z.object({
     required_error: "Please select a Check-in date",
     invalid_type_error: "Format invalid",
     // check if check-in date is not in the past 
-  }).min(new Date(new Date().getTime() - (24 * 60 * 60 * 1000)), { message: "Invalid Date" }),
+  }),
   checkOut: z.date({
     required_error: "Please select a Check-out date",
     invalid_type_error: "Format invalid",
@@ -325,7 +325,7 @@ const AddReservation = () => {
             name="note"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Payment Status</FormLabel>
+                <FormLabel>Note</FormLabel>
                 <Textarea {...field} placeholder="Note." />
                 <FormMessage />
               </FormItem>

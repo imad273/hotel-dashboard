@@ -52,17 +52,32 @@ router.post('/create_reservation', async (req, res) => {
 })
 
 router.post('/edit_reservation', async (req, res) => {
+  console.log(req.body.room);
   try {
+    const findRoom = await Room.find({ _id: req.body.room });
+    
     const editDocument = await Reservation.updateOne(
       {
         _id: req.body.id
       },
       {
         ...req.body,
-        availability: req.body.availability === "true" ? true : false,
-        ...(req.files.length > 0 && { images: req.files.map(image => image.filename) })
+        room: findRoom[0]
       }
-    )
+    );
+
+    if (editDocument) {
+      findRoom[0].availability === true &&
+        await Room.updateOne(
+          {
+            _id: req.body.room
+          },
+          {
+            availability: false,
+          }
+        )
+    }
+
     res.send({ message: 'Document updated', data: editDocument });
   } catch (error) {
     // Creation failed

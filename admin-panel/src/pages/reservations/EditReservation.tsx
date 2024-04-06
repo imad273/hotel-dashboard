@@ -29,7 +29,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import { Popover, PopoverTrigger, PopoverContent } from 'components/ui/popover'
 import { cn } from 'lib/utils'
 import { Calendar } from 'components/ui/calendar'
-import { useGetRooms, useAddReservation, useGetSingleReservation } from 'hooks'
+import { useGetRooms, useGetSingleReservation, useEditReservation } from 'hooks'
 import NoDataAlert from 'components/Alerts/NoDataAlert'
 
 const phoneRegex = new RegExp(
@@ -53,7 +53,7 @@ const formSchema = z.object({
     required_error: "Please select a Check-in date",
     invalid_type_error: "Format invalid",
     // check if check-in date is not in the past 
-  }).min(new Date(new Date().getTime() - (24 * 60 * 60 * 1000)), { message: "Invalid Date" }),
+  }),
   checkOut: z.date({
     required_error: "Please select a Check-out date",
     invalid_type_error: "Format invalid",
@@ -106,34 +106,34 @@ const EditReservation = () => {
       form.setValue('checkIn', new Date(data.data.checkIn))
       form.setValue('checkOut', new Date(data.data.checkOut))
       form.setValue('paymentStatus', data.data.paymentStatus)
-      form.setValue('note', data.data.note)
+      form.setValue('note', data.data.note || "")
     }
   }, [data]);
 
-  //const { editWorker, data: uploadData, error, isLoading: editLoading } = useEditWorker();
+  const { editReservation, data: uploadData, error, isLoading: editLoading } = useEditReservation();
 
   const onSubmit = (values: z.infer<typeof formSchema>) => {
-    //createReservation(values);
+    params.id !== undefined && editReservation(values, params.id);
   }
 
   const navigate = useNavigate();
 
-  /*   useEffect(() => {
-      if (error) {
-        setFailsAlert(true);
-        setAlertMsg("There was an error while creating the reservation");
-        return
-      }
-  
-      if (data !== undefined) {
-        setSuccessAlert(true);
-        setAlertMsg("Reservation Created Successfully");
-  
-        setTimeout(() => {
-          navigate('/reservations')
-        }, 2000);
-      }
-    }, [data, error]); */
+  useEffect(() => {
+    if (error) {
+      setFailsAlert(true);
+      setAlertMsg("There was an error while editing the reservation");
+      return
+    }
+
+    if (uploadData !== undefined) {
+      setSuccessAlert(true);
+      setAlertMsg("Reservation Edited Successfully");
+
+      /* setTimeout(() => {
+        navigate('/reservations')
+      }, 2000); */
+    }
+  }, [uploadData, error]);
 
   const { GetRooms, data: roomsData, isLoading } = useGetRooms();
 
@@ -148,7 +148,7 @@ const EditReservation = () => {
       {successAlert && <SuccessAlert setSuccessAlert={setSuccessAlert}>{alertMsg}</SuccessAlert>}
       {failsAlert && <FailsAlert setFailsAlert={setFailsAlert}>{alertMsg}</FailsAlert>}
 
-      {isLoading || getGetReservationLoading && <LoadingBadge />}
+      {isLoading || getGetReservationLoading || editLoading && <LoadingBadge />}
 
       <div className='mb-6'>
         <h3 className='text-2xl font-semibold'>Edit Reservation</h3>
@@ -351,7 +351,7 @@ const EditReservation = () => {
             name="note"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Payment Status</FormLabel>
+                <FormLabel>Note</FormLabel>
                 <Textarea {...field} placeholder="Note." />
                 <FormMessage />
               </FormItem>
