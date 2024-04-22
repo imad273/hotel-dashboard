@@ -3,7 +3,6 @@ const app = express()
 const cors = require('cors')
 var bodyParser = require('body-parser')
 const path = require('path');
-const port = 9999;
 
 // database connection
 require('./config/database');
@@ -34,6 +33,8 @@ app.use('/rooms', roomsRouter);
 app.use('/staff', staffRouter);
 app.use('/reservations', reservationsRouter);
 
-app.listen(port, () => {
+const port = 9999;
+
+app.listen(process.env.PORT || port, () => {
   console.log(`app running on port ${port}`)
 })
