@@ -8,8 +8,13 @@ export function useGetStaff() {
   const [isLoading, setIsLoading] = useState(true);
 
   const GetStaff = async () => {
+    let url = "http://localhost:9999";
 
-    const request = await fetch("http://localhost:9999/staff/all_staff", {
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/staff/all_staff`, {
       method: "GET"
     });
 

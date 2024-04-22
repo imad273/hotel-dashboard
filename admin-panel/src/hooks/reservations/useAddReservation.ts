@@ -20,8 +20,14 @@ export function useAddReservation() {
 
   const createReservation = async (data: dataType) => {
     setError(false);
-    
-    const request = await fetch("http://localhost:9999/reservations/create_reservation", {
+
+    let url = "http://localhost:9999";
+
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/reservations/create_reservation`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

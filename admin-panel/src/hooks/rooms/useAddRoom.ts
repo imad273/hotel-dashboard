@@ -26,12 +26,17 @@ export function useAddRoom() {
     formData.append("price", data.price.toString());
     formData.append("capacity", data.capacity.toString());
     formData.append("description", data.description);
+    let url = "http://localhost:9999";
 
-    const request = await fetch("http://localhost:9999/rooms/create_room", {
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/rooms/create_room`, {
       method: "POST",
       body: formData
     });
-    
+
     if (!request.ok && request.status === 500) {
       setError(true);
     }
@@ -41,7 +46,7 @@ export function useAddRoom() {
     setData(response);
     setIsLoading(false);
 
-    
+
   }
 
   return { createRoom, data, error, errorMsg, isLoading };

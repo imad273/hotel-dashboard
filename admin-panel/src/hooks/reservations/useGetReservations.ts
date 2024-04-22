@@ -8,8 +8,13 @@ export function useGetReservations() {
   const [isLoading, setIsLoading] = useState(true);
 
   const GetReservations = async () => {
+    let url = "http://localhost:9999";
 
-    const request = await fetch("http://localhost:9999/reservations/all_reservations", {
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/reservations/all_reservations`, {
       method: "GET"
     });
 

@@ -30,7 +30,13 @@ export function useEditRoom() {
     formData.append("capacity", data.capacity.toString());
     formData.append("description", data.description);
 
-    const request = await fetch("http://localhost:9999/rooms/edit_room", {
+    let url = "http://localhost:9999";
+
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/rooms/edit_room`, {
       method: "POST",
       /* headers: { 'Content-Type': 'multipart/form-data ' }, */
       body: formData

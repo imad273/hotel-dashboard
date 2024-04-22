@@ -8,8 +8,14 @@ export function useDeleteWorker() {
 
   const deleteWorker = async (id: string) => {
     setError(false);
-    
-    const request = await fetch("http://localhost:9999/staff/delete_worker", {
+
+    let url = "http://localhost:9999";
+
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/staff/delete_worker`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

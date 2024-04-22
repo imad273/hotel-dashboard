@@ -21,7 +21,13 @@ export function useEditReservation() {
   const editReservation = async (data: dataType, id: string) => {
     setError(false);
 
-    const request = await fetch("http://localhost:9999/reservations/edit_reservation", {
+    let url = "http://localhost:9999";
+
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/reservations/edit_reservation`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

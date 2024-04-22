@@ -8,8 +8,13 @@ export function useDeleteRoom() {
 
   const deleteRoom = async (id: string) => {
     setError(false);
+    let url = "http://localhost:9999";
 
-    const request = await fetch("http://localhost:9999/rooms/delete_room", {
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/rooms/delete_room`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

@@ -8,8 +8,14 @@ export function useDeleteReservations() {
 
   const deleteReservations = async (id: string) => {
     setError(false);
-    
-    const request = await fetch("http://localhost:9999/reservations/delete_reservation", {
+
+    let url = "http://localhost:9999";
+
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/reservations/delete_reservation`, {
       method: "POST",
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({

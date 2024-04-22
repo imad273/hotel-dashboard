@@ -8,8 +8,13 @@ export function useGetRooms() {
   const [isLoading, setIsLoading] = useState(true);
 
   const GetRooms = async () => {
+    let url = "http://localhost:9999";
 
-    const request = await fetch("http://localhost:9999/rooms/all_rooms", {
+    if (process.env.NODE_ENV !== "development") {
+      url = "https://hotel-app-35mr.onrender.com"
+    }
+
+    const request = await fetch(`${url}/rooms/all_rooms`, {
       method: "GET"
     });
 
