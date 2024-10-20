@@ -16,12 +16,12 @@ const Home = () => {
 
   return (
     <section>
-      <div className='flex items-center justify-between mb-2'>
+      <div className='items-center justify-between mb-2 md:flex'>
         <h2 className='text-3xl font-semibold text-gray-200'>Overview</h2>
-        <p className='text-sm font-semibold text-gray-200'>{formattedDate}</p>
+        <p className='mt-2 text-sm font-medium text-gray-200 md:mt-0 md:font-semibold'>{formattedDate}</p>
       </div>
 
-      <div className='grid grid-cols-3 gap-3 my-5'>
+      <div className='grid gap-3 my-5 md:grid-cols-3'>
         <div className='px-3 py-4 bg-main rounded-xl'>
           <div className='flex items-center gap-2'>
             <div className='bg-gray-100 text-main p-1.5 rounded-xl'>
@@ -57,7 +57,7 @@ const Home = () => {
         </div>
       </div>
 
-      <div className='grid grid-cols-2 gap-3 my-5'>
+      <div className='grid gap-3 my-5 md:grid-cols-2'>
         <div className='p-5 rounded-lg bg-dark_bg'>
           <div>
             <h3 className='pb-6 text-2xl font-semibold text-gray-100'>Revenue</h3>
