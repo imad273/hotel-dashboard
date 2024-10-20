@@ -1,4 +1,3 @@
-import React from 'react'
 import {
   Table,
   TableBody,
@@ -62,7 +61,7 @@ const HomeTable = () => {
               <TableCell>{data.id}</TableCell>
               <TableCell>{data.status}</TableCell>
               <TableCell>{data.method}</TableCell>
-              <TableCell className="text-right">${data.amount}</TableCell>
+              <TableCell className="font-medium text-right">${data.amount}</TableCell>
             </TableRow>
           ))
         }

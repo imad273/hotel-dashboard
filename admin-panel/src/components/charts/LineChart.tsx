@@ -46,8 +46,7 @@ const HomeLine = () => {
           stepSize: 100,
         },
         grid: {
-          display: true,
-          color: "#444544"
+          display: false,
         }
       },
       x: {
@@ -67,8 +66,8 @@ const HomeLine = () => {
       {
         label: 'Dataset 1',
         data: [200, 222, 86, 352, 220, 300, 150],
-        backgroundColor: "#E56A1B",
-        borderColor: "#E56A1B",
+        backgroundColor: "#FF204E",
+        borderColor: "#FF204E",
         yAxisID: 'y',
         tension: 0.5
       }

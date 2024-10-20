@@ -46,7 +46,7 @@ const HomeBars = () => {
     datasets: [
       {
         data: [200, 222, 86, 352, 220, 300, 150],
-        backgroundColor: "#E56A1B",
+        backgroundColor: "#FF204E",
         borderRadius: 15,
       }
     ],
