@@ -1,7 +1,5 @@
-import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Sidebar from './Sidebar'
-import { Bell, UserRound } from 'lucide-react'
 import {
   Home,
   Rooms,
@@ -14,6 +12,7 @@ import {
   EditWorker,
   EditReservation
 } from '../pages'
+import Header from './Header'
 
 const Layout = () => {
   const routes = [
@@ -66,16 +65,7 @@ const Layout = () => {
       </div>
 
       <div className="w-full min-h-screen ml-0 overflow-hidden content bg-dark_content_bg md:ml-72">
-        <div className='w-full px-4 py-2 border-l header bg-dark_bg border-stone-800'>
-          <div className='flex items-center justify-end gap-2'>
-            <div className='p-2 border-2 border-gray-400 cursor-pointer rounded-xl'>
-              <Bell size={22} className='text-gray-300' />
-            </div>
-            <div className='p-2 border-2 border-gray-400 cursor-pointer rounded-xl'>
-              <UserRound size={22} className='text-gray-300' />
-            </div>
-          </div>
-        </div>
+        <Header />
 
         <div className='py-5 px-7'>
           <Routes>

@@ -1,19 +1,18 @@
-import React from 'react'
 import {
   Album,
-  BarChartHorizontalBig,
   LayoutDashboard,
   School,
-  Settings,
   UsersRound
-} from 'lucide-react'
-import { Link } from 'react-router-dom'
+} from 'lucide-react';
+import { Link } from 'react-router-dom';
+import logo from '../assets/logo.png';
 
 const Sidebar = () => {
   return (
     <div className='p-2'>
       <div className='flex items-center justify-center w-full my-8'>
-        <h1 className='text-3xl font-semibold uppercase text-main'>Azure</h1>
+        {/* <h1 className='text-3xl font-semibold uppercase text-main'>Azure</h1> */}
+        <img src={logo} className='w-16' alt="LOGO" />
       </div>
 
       <div className='mx-2 mt-12 space-y-2'>
