@@ -50,7 +50,7 @@ const StaffTable = ({ staff, deleteStaff }: TableProps) => {
   ]
 
   return (
-    <div className='overflow-x-hidden border border-gray-400 rounded-md'>
+    <div className='overflow-x-hidden border border-[#2a2c31] rounded-md'>
       <Table>
         <TableHeader>
           <TableRow>

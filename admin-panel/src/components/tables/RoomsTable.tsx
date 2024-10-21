@@ -47,7 +47,7 @@ const RoomsTable = ({ rooms, deleteRoom }: TableProps) => {
   ]
 
   return (
-    <div className='border border-gray-400 rounded-md'>
+    <div className='border border-[#2a2c31] rounded-md'>
       <Table>
         <TableHeader>
           <TableRow>
@@ -74,7 +74,7 @@ const RoomsTable = ({ rooms, deleteRoom }: TableProps) => {
                 </TableCell>
                 <TableCell>
                   <DropdownMenu>
-                    <DropdownMenuTrigger className='cursor-pointer outline-none'>
+                    <DropdownMenuTrigger className='outline-none cursor-pointer'>
                       <EllipsisVertical />
                     </DropdownMenuTrigger>
                     <DropdownMenuContent className="w-56 border-none !font-mine text-white bg-dark_content_bg">
@@ -82,21 +82,16 @@ const RoomsTable = ({ rooms, deleteRoom }: TableProps) => {
                       <DropdownMenuSeparator />
                       <DropdownMenuGroup>
                         <Link to={`/edit_rooms/${data._id}`}>
-                          <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
-                            <PencilRuler className="h-5 w-5" />
+                          <DropdownMenuItem className='gap-2 cursor-pointer hover:bg-dark_content_bg'>
+                            <PencilRuler className="w-5 h-5" />
                             <span className='font-semibold'>Edit</span>
                           </DropdownMenuItem>
                         </Link>
 
-                        <DropdownMenuItem className='cursor-pointer gap-2 hover:bg-dark_content_bg'>
-                          <Eye className="h-5 w-5" />
-                          <span className='font-semibold'>View</span>
-                        </DropdownMenuItem>
-
                         <DropdownMenuItem onSelect={(e) => e.preventDefault()} className='cursor-pointer hover:bg-dark_content_bg'>
                           <AlertDialog>
-                            <AlertDialogTrigger className='flex items-center gap-2 w-full'>
-                              <Trash2 className="h-5 w-5 text-red-600" />
+                            <AlertDialogTrigger className='flex items-center w-full gap-2'>
+                              <Trash2 className="w-5 h-5 text-red-600" />
                               <span className='font-semibold'>Delete</span>
                             </AlertDialogTrigger>
                             <AlertDialogContent>

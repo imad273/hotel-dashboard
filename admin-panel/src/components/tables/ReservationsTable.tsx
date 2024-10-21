@@ -57,7 +57,7 @@ const ReservationTable = ({ reservations, deleteReservation }: TableProps) => {
   }
 
   return (
-    <div className='border border-gray-400 rounded-md'>
+    <div className='border border-[#2a2c31] rounded-md'>
       <Table>
         <TableHeader>
           <TableRow>
