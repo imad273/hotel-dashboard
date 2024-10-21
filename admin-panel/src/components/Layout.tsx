@@ -13,6 +13,7 @@ import {
   EditReservation
 } from '../pages'
 import Header from './Header'
+import { useState } from 'react'
 
 const Layout = () => {
   const routes = [
@@ -56,16 +57,18 @@ const Layout = () => {
       path: "/edit_worker/:id",
       element: <EditWorker />
     }
-  ]
+  ];
+
+  const [phoneMenu, setPhoneMenu] = useState(false)
 
   return (
     <main className='flex text-white !font-mine'>
-      <div className='fixed w-0 min-h-screen overflow-hidden bg-dark_bg md:w-72'>
-        <Sidebar />
+      <div className={`fixed ${phoneMenu ? "w-full" : "w-0"} min-h-screen overflow-hidden bg-dark_bg md:w-72 z-50`}>
+        <Sidebar setPhoneMenu={setPhoneMenu} />
       </div>
 
       <div className="w-full min-h-screen ml-0 overflow-hidden content bg-dark_content_bg md:ml-72">
-        <Header />
+        <Header setPhoneMenu={setPhoneMenu} />
 
         <div className='py-5 px-7'>
           <Routes>

@@ -1,9 +1,13 @@
 import { Bell, Menu, UserRound } from 'lucide-react'
 
-const Header = () => {
+interface Props {
+  setPhoneMenu: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Header = ({ setPhoneMenu }: Props) => {
   return (
     <div className='flex items-center justify-between w-full py-4 border-l md:block px-7 md:px-4 header bg-dark_bg border-stone-800'>
-      <div className='md:hidden'>
+      <div className='md:hidden' onClick={() => setPhoneMenu(true)}>
         <Menu />
       </div>
       <div className='flex items-center justify-end gap-4'>

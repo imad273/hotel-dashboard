@@ -2,17 +2,25 @@ import {
   Album,
   LayoutDashboard,
   School,
-  UsersRound
+  UsersRound,
+  X
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import logo from '../assets/logo.png';
 import { useState } from 'react';
 
-const Sidebar = () => {
+interface Props {
+  setPhoneMenu: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Sidebar = ({ setPhoneMenu }: Props) => {
   const [activeLink, setActiveLink] = useState("dashboard");
 
   return (
-    <div className='p-2'>
+    <div className='relative p-2'>
+      <div className='absolute top-10 right-5 md:hidden' onClick={() => setPhoneMenu(false)}>
+        <X />
+      </div>
       <div className='flex items-center justify-center w-full my-8'>
         {/* <h1 className='text-3xl font-semibold uppercase text-main'>Azure</h1> */}
         <img src={logo} className='w-16' alt="LOGO" />

@@ -42,7 +42,7 @@ interface TableProps {
 const StaffTable = ({ staff, deleteStaff }: TableProps) => {
   const head = [
     "Name",
-    "Position", // 2 person
+    "Position",
     "Phone Number",
     "Email",
     "Address",
